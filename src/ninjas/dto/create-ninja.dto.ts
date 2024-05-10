@@ -1,1 +1,4 @@
-export class CreateNinjaDto {}
+export class CreateNinjaDto {
+    name: String
+    spead: Number
+}
