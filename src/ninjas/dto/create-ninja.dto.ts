@@ -1,4 +1,4 @@
 export class CreateNinjaDto {
-    name: String
-    spead: Number
+    name: string
+    weapon: 'stars' | 'bullets'
 }

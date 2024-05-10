@@ -27,9 +27,7 @@ export class NinjasController {
   //POST /ninjas/
   @Post()
   createNinja(@Body() createNinjaDto: CreateNinjaDto) {
-    return {
-      name: createNinjaDto.name,
-    };
+    return this.ninjasService.createNinja(createNinjaDto)
   }
 
   //GET a /ninjas/:id
@@ -40,10 +38,7 @@ export class NinjasController {
   }
 
   @Put()
-  updateNinja(@Param('id') id: String,  @Body() updateNinjaDto: UpdateNinjaDto){
-    return {
-      id,
-      name: UpdateNinjaDto,
-    }
+  updateNinja(@Param('id') id: Number,  @Body() updateNinjaDto: UpdateNinjaDto){
+    return this.ninjasService.updateNinja(id, updateNinjaDto)
   }
 }

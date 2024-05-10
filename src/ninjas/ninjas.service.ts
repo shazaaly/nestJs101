@@ -1,4 +1,4 @@
-import { Injectable, Param } from '@nestjs/common';
+import { Body, Injectable, Param } from '@nestjs/common';
 import { CreateNinjaDto } from './dto/create-ninja.dto';
 import { UpdateNinjaDto } from './dto/update-ninja.dto';
 
@@ -30,4 +30,30 @@ export class NinjasService {
     return ninja
 
   }
+
+  createNinja(createNinjaDto : CreateNinjaDto){
+    const newNinja = {
+      ...createNinjaDto,
+      id : Date.now()
+    }
+    this.ninjas.push(newNinja)
+    return newNinja
+
+  }
+
+  updateNinja(id: Number, updateNinjaDto: UpdateNinjaDto){
+    const index = this.ninjas.findIndex((ninja) => ninja.id === id);
+    if (index === -1) {
+        throw new Error('Ninja not found');
+    }
+
+    const updatedNinja = {
+        ...this.ninjas[index],
+        ...updateNinjaDto
+    };
+
+    this.ninjas[index] = updatedNinja;
+
+    return updatedNinja;
+}
 }

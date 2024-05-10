@@ -3,5 +3,6 @@ import { CreateNinjaDto } from './create-ninja.dto';
 
 export class UpdateNinjaDto extends PartialType(CreateNinjaDto) {
 
-    
+    name: string
+    weapon: 'stars' | 'bullets'
 }
