@@ -4,56 +4,49 @@ import { UpdateNinjaDto } from './dto/update-ninja.dto';
 
 @Injectable()
 export class NinjasService {
-
   private ninjas = [
-    {"id" : 1, "name" : "ninja1", "weapon" : "stars"},
-    {"id" : 2, "name" : "ninja2", "weapon" : "bullets"},
-    {"id" : 3, "name" : "ninja3", "weapon" : "stars"},
-    
-  ]
+    { id: 1, name: 'ninja1', weapon: 'stars' },
+    { id: 2, name: 'ninja2', weapon: 'bullets' },
+    { id: 3, name: 'ninja3', weapon: 'stars' },
+  ];
 
-  getNinjas(weapon?:  'stars' | 'bullets'){
-    if(weapon){
-      return this.ninjas.filter((ninja)=> ninja.weapon === weapon)
+  getNinjas(weapon?: 'stars' | 'bullets') {
+    if (weapon) {
+      return this.ninjas.filter((ninja) => ninja.weapon === weapon);
     }
-    return this.ninjas
-    
-
+    return this.ninjas;
   }
 
-  getNinja(id: Number){
-    const ninja = this.ninjas.find((ninja)=> ninja.id === id)
+  getNinja(id: Number) {
+    const ninja = this.ninjas.find((ninja) => ninja.id === id);
     if (!ninja) {
-      
-      throw new Error('Ninja Not Found!')
+      throw new Error('Ninja Not Found!');
     }
-    return ninja
-
+    return ninja;
   }
 
-  createNinja(createNinjaDto : CreateNinjaDto){
+  createNinja(createNinjaDto: CreateNinjaDto) {
     const newNinja = {
       ...createNinjaDto,
-      id : Date.now()
-    }
-    this.ninjas.push(newNinja)
-    return newNinja
-
+      id: Date.now(),
+    };
+    this.ninjas.push(newNinja);
+    return newNinja;
   }
 
-  updateNinja(id: Number, updateNinjaDto: UpdateNinjaDto){
+  updateNinja(id: Number, updateNinjaDto: UpdateNinjaDto) {
     const index = this.ninjas.findIndex((ninja) => ninja.id === id);
     if (index === -1) {
-        throw new Error('Ninja not found');
+      throw new Error('Ninja not found');
     }
 
     const updatedNinja = {
-        ...this.ninjas[index],
-        ...updateNinjaDto
+      ...this.ninjas[index],
+      ...updateNinjaDto,
     };
 
     this.ninjas[index] = updatedNinja;
 
     return updatedNinja;
-}
+  }
 }
