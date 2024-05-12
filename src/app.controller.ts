@@ -1,14 +1,16 @@
-import { Body, Controller, Get, Post, UseGuards, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Get, InternalServerErrorException, Post, UseFilters, UseGuards, UseInterceptors } from '@nestjs/common';
 import { AppService } from './app.service';
 import { AuthGuard } from './guards/auth.guard';
 import { LoggingInterceptor } from './interceptors/logging.interceptor';
 import { FreezePipe } from './pipes/freeze.pipe';
+import { HtpExceptionFilter } from './filters/httpExceptionFilter';
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
+  @UseFilters(HtpExceptionFilter)
   @UseInterceptors(LoggingInterceptor)
 
   getHello(): string {
@@ -19,5 +21,10 @@ export class AppController {
   pipeExample(@Body(new FreezePipe()) body : any ){
     body.test ='123'
 
+  }
+
+  @Get('error')
+  getError(){
+    throw new InternalServerErrorException
   }
 }

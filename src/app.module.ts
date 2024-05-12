@@ -5,13 +5,14 @@ import { UsersModule } from './users/users.module';
 import { NinjasModule } from './ninjas/ninjas.module';
 import { RequestService } from './request.service';
 import { AuthenticationMiddleware } from './middleware/AuthenticationMiddleware';
-import { APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
+import { APP_FILTER, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
 import { LoggingInterceptor } from './interceptors/logging.interceptor';
 import { FreezePipe } from './pipes/freeze.pipe';
+import { HtpExceptionFilter } from './filters/httpExceptionFilter';
 
 @Module({
   imports: [UsersModule, NinjasModule],
-  controllers: [AppController],
+controllers: [AppController],
   providers: [AppService, RequestService,
     {
       provide: APP_INTERCEPTOR,
@@ -21,6 +22,10 @@ import { FreezePipe } from './pipes/freeze.pipe';
     {
       provide: APP_PIPE,
       useClass: FreezePipe
+    },
+    {
+      provide: APP_FILTER,
+      useClass: HtpExceptionFilter
     }
   ],
 
