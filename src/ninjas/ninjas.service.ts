@@ -8,6 +8,9 @@ export class NinjasService {
     { id: 1, name: 'ninja1', weapon: 'stars' },
     { id: 2, name: 'ninja2', weapon: 'bullets' },
     { id: 3, name: 'ninja3', weapon: 'stars' },
+    { id: 4, name: 'ninja4', weapon: 'stars' },
+    { id: 5, name: 'ninja5', weapon: 'bullets' },
+    { id: 6, name: 'ninja6', weapon: 'stars' },
   ];
 
   getNinjas(weapon?: 'stars' | 'bullets') {
@@ -57,6 +60,7 @@ export class NinjasService {
       
     }
     this.ninjas.splice(ninjaIndex, 1)
+    return `Ninja ${id} has been deleted!`
 
 
   }

@@ -34,7 +34,7 @@ export class NinjasController {
 
   @Get(':id')
   getNinja(id: Number) {
-    return this.ninjasService.getNinja(id);
+    return this.ninjasService.getNinja(+id);
   }
 
   @Put(':id')
@@ -43,7 +43,7 @@ export class NinjasController {
   }
 
   @Delete(':id')
-  deleteNinja(id: Number){
+  deleteNinja(@Param('id') id: string){
     return this.ninjasService.deleteNinja(Number(id))
   }
 }
