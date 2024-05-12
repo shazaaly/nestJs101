@@ -41,4 +41,9 @@ export class NinjasController {
   updateNinja(@Param('id') id: Number,  @Body() updateNinjaDto: UpdateNinjaDto){
     return this.ninjasService.updateNinja(Number(id), updateNinjaDto)
   }
+
+  @Delete(':id')
+  deleteNinja(id: Number){
+    return this.ninjasService.deleteNinja(Number(id))
+  }
 }

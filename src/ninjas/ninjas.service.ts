@@ -49,4 +49,15 @@ export class NinjasService {
 
     return updatedNinja;
   }
+
+  deleteNinja(id: Number){
+    const ninjaIndex = this.ninjas.findIndex((ninja)=> ninja.id === id)
+    if (ninjaIndex === -1) {
+      throw new Error('Ninja not found!')
+      
+    }
+    this.ninjas.splice(ninjaIndex, 1)
+
+
+  }
 }
