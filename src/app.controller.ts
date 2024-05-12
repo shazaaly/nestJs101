@@ -1,7 +1,8 @@
-import { Controller, Get, UseGuards, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Get, Post, UseGuards, UseInterceptors } from '@nestjs/common';
 import { AppService } from './app.service';
 import { AuthGuard } from './guards/auth.guard';
 import { LoggingInterceptor } from './interceptors/logging.interceptor';
+import { FreezePipe } from './pipes/freeze.pipe';
 
 @Controller()
 export class AppController {
@@ -12,5 +13,11 @@ export class AppController {
 
   getHello(): string {
     return this.appService.getHello();
+  }
+
+  @Post()
+  pipeExample(@Body(new FreezePipe()) body : any ){
+    body.test ='123'
+
   }
 }
