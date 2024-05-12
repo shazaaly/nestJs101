@@ -71,3 +71,5 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+Resource :
+https://www.youtube.com/watch?v=x1W3FJ1RJlM
