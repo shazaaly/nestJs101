@@ -1,4 +1,4 @@
-import { Body, Injectable, Param } from '@nestjs/common';
+import { Body, Injectable, Param, ParseIntPipe } from '@nestjs/common';
 import { CreateNinjaDto } from './dto/create-ninja.dto';
 import { UpdateNinjaDto } from './dto/update-ninja.dto';
 
@@ -20,7 +20,7 @@ export class NinjasService {
     return this.ninjas;
   }
 
-  getNinja(id: Number) {
+  getNinja(@Param('id', ParseIntPipe) id: Number) {
     const ninja = this.ninjas.find((ninja) => ninja.id === id);
     if (!ninja) {
       throw new Error('Ninja Not Found!');
